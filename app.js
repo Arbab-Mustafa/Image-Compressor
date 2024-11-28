@@ -315,13 +315,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
       resultsContainer.innerHTML = `<div class="flex flex-wrap justify-center mb-4">
       </div>
-      <div class="flex flex-wrap   justify-between gap-1  items-center mb-4 p-2 sm:p-4 border rounded-lg bg-gray-100">
-      <button id="clear-list" class="flex items-center bg-gray-300 hover:bg-gray-400 text-black font-semibold py-1 sm:py-2 px-2 sm:px-4 rounded text-sm sm:text-lg">
-     
-      Clear list
-      </button>
-      <div class="text-sm sm:text-lg font-semibold">Total Saved: <span id="total-saved" class="text-green-600">0</span></div>
-      <button id="download-all" class="bg-blue-500 hover:bg-blue-700 text-white font-bold  py-1 sm:py-2 px-2 sm:px-4 rounded text-sm sm:text-lg">Download All</button>
+      <div class="flex flex-wrap   justify-between gap-1  items-center mb-4 p-2 sm:p-4 border rounded-lg bg-gray-50">
+       <div class="text-sm sm:text-lg font-semibold">Total Saved: <span id="total-saved" class="text-green-600">0</span></div>
+       <!-- Include Heroicons SVG -->
+<button id="clear-list" class="flex items-center bg-gray-200 sm:hidden  text-black font-semibold py-1 sm:py-2 px-2 sm:px-4 rounded text-sm sm:text-lg">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+  </svg>
+</button>
+
+     <div class='flex gap-1'>
+     <button id="clear-list" class="flex items-center bg-gray-200  hidden sm:block  text-black font-semibold py-1 sm:py-2 px-2 sm:px-4 rounded text-sm sm:text-lg">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+  </svg>
+</button>
+
+
+     <button id="download-all" class="bg-blue-500 hover:bg-blue-700 text-white font-bold  py-1 sm:py-2 px-2 sm:px-4 rounded text-sm sm:text-lg">Download All</button>
+     </div>
       </div>
       `;
 
@@ -331,8 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
       responsesReceived = 0;
       thumbnails.querySelectorAll("img").forEach(async (img, index) => {
         const fileSection = document.createElement("div");
-        fileSection.classList =
-          "flex items-center flex-wrap gap-1 p-1 sm:p-2 bg-white rounded-lg shadow-md mb-2 download-btn";
+        fileSection.classList = "  download-btn";
         const originalSize =
           (img.dataset.filesize / (1024 * 1024)).toFixed(2) + " MB";
         const truncatedName =
@@ -340,31 +351,44 @@ document.addEventListener("DOMContentLoaded", () => {
             ? img.dataset.filename.substring(0, 20) + "..."
             : img.dataset.filename;
         fileSection.innerHTML = `
-      <img src="${img.src}" alt="file image" class="w-10 h-10 sm:w-12 sm:h-12 mr-2 rounded">
-      <div class="flex-1">
-      <div class= "text-xs sm:text-sm font-semibold">Name: ${truncatedName}</div>
-      <div class="text-xs sm:text-xs font-light">Format: </div>
-      <div class="text-gray-600 text-xs">Before:  &rarr; After: -- MB</div>
-      </div>
-      
-      <div class="mr-2 progress-bar" style="width: 100px;">
-      <div class="progress-bar-inner" id="progress-bar-${index}" style="
-      width: 0;
-      background-size: 1rem 1rem;
-      animation: progress-bar-stripes 0.7s linear infinite;
-      transition: width 0.7s ease;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      font-size: 12px;
-      ">0%</div>
-      </div>
-      <button class="compare-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-1 text-xs">Compare</button>
-      <button class="download-btn bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-xs" >Download</button>
-      `;
+            <div class="flex flex-col sm:flex-row  sm:items-center sm:justify-around p-3 sm:p-4 pb-1 w-full border rounded-lg bg-gray-50 shadow-md">
+            <div class='flex justify-around'>
+            <!-- Image Section (Mobile Left, Larger Screen Top) -->
+            <img src="${img.src}" alt="file image" class="w-16 h-16 sm:w-24 sm:h-24 mr-4 sm:mr-8 rounded-lg object-cover mb-2 sm:mb-0 sm:mr-4">
+            <!-- File Name and Format -->
+                <div class="text-xs  font-semibold truncate w-full">
+                  <div>Name: ${truncatedName}</div>
+                  <div class="text-sm sm:text-sm font-light">Format: </div>
+                  <div class="text-gray-600 text-xs">Before:  &rarr; After: -- MB</div>
+                </div>
+            </div>
+              
+               
+              <!-- Action Buttons (Mobile: Stacked, Large Screen: Aligned) -->
+              <div class="flex gap-1   sm:flex-row sm:space-x-4 mt-2 sm:mt-4 sm:mt-0 w-full sm:w-auto">
+                <button class="compare-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 sm:py-2 px-2 sm:px-4 rounded text-xs sm:text-sm">
+                  Compare
+                </button>
+                 <button class="download-btn bg-green-500 flex justify-center items-center text-white font-bold py-1 sm:py-2 px-2 sm:px-4 rounded text-sm sm:text-base flex items-center justify-center">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-4-4m4 4l4-4" />
+  </svg>
+  
+</button>
+
+              </div>
+          
+              <!-- Progress/Loading Bar (Mobile & Large Screen: Below Buttons) -->
+            
+                 <div class="w-full sm:w-1/4 mt-4 sm:mt-0">
+                  <div class="bg-gray-200 rounded-lg h-2 sm:h-3 w-full">
+                    <div class="progress-bar-inner h-2 sm:h-3 bg-blue-600" id="progress-bar-${index}" style="width: 0%;"></div>
+                  </div>
+                </div>
+            </div>
+          `;
+
         resultsContainer.appendChild(fileSection);
         const downloadButton = fileSection.querySelector(".download-btn"); // Get the specific button
 
