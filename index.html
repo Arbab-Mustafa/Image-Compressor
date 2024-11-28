@@ -102,8 +102,9 @@
     }
 
     .instruction-text {
-      font-size: 1.3rem;
+      font-size: 1.7rem;
       margin-top: 0.2rem;
+      color: gray
     }
 
     .compression-settings {
@@ -223,7 +224,7 @@
 </head>
 
 <body>
-  <header class="bg-gradient-to-r from-blue-500 to-blue-900 text-white sticky top-0 w-full z-50 shadow-lg mb-[20rem]">
+  <header class="bg-gradient-to-r from-blue-500 to-blue-900 text-white sticky top-0 w-full z-50 shadow-lg mb-[20rem]  ">
     <div class="container mx-auto flex justify-between items-center p-2 md:p-4">
       <!-- Logo -->
       <a href="index.html" class="flex items-center space-x-2">
@@ -240,7 +241,7 @@
 
       <!-- Navigation Links -->
       <nav id="navMenu"
-        class="fixed top-0 left-0 bg-blue-500 md:bg-transparent text-white w-full h-3/6 md:h-auto transform -translate-y-full transition-all duration-500 md:static md:h-auto md:w-auto md:translate-y-0 md:flex md:items-center md:space-x-6 ">
+        class="fixed top-0 left-0  bg-gradient-to-r from-blue-800 to-blue-700 rounded-md sm:bg-transparent sm:from-transparent sm:to-transparent text-white w-full h-3/6 md:h-auto transform -translate-y-full transition-all duration-500 md:static md:h-auto md:w-auto md:translate-y-0 md:flex md:items-center md:space-x-6 ">
         <!-- Close Button (visible on mobile) -->
         <button id="menuClose" class="absolute top-4 right-4 md:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
@@ -263,12 +264,12 @@
     <h1 class="text-center text-2xl md:text-3xl font-bold mb-2 md:mb-4">JPEG Compressor</h1>
     <p class="text-center mb-8">JPEG compressor is a free online image optimization tool that can compress JPEG, PNG,
       JPG, SVG, and WEBP images.</p>
-    <div class="border-2 border-dashed border-gray-600  p-6 md:p-8 text-center rounded-lg ">
-      <p class="instruction-text hidden md:block">Drag & drop files here or</p>
+    <div class="border-2 border-dashed border-gray-600  p-4 md:p-7 text-center rounded-lg ">
+      <p class="instruction-text hidden md:block text-2xl">Drag & drop files here or</p>
       <p class="instruction-text  hidden md:block">Paste the image from the clipboard (Ctrl-V or ⌘V)</p>
       <p class="mt-2 text-sm text-center  hidden md:block">Compress jpeg, png, gif, jpg, svg, webp, heic, tiff and ico.
         Max 50 MB.</p>
-      <p class="mt-2 text-base text-center    md:hidden">Choose Your File...</p>
+      <p class="mt-2 text-lg text-center    md:hidden">Choose Your File...</p>
       <button id="selectFilesBtn"
         class="bg-gradient-to-r from-blue-500 to-blue-900 text-white px-3 sm:px-4 py-1 sm:py-2 rounded flex items-center justify-center mx-auto">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
@@ -278,7 +279,7 @@
         </svg>
         Select Files
       </button>
-      <p class="mt-2 text-xs text-center   md:hidden">Compress jpeg, png, gif, jpg, svg, webp, heic, tiff and
+      <p class="mt-2 text-base text-center   md:hidden">Compress jpeg, png, gif, jpg, svg, webp, heic, tiff and
         ico.
         Max 50 MB.</p>
       <div class="flex mt-1 md:mt-4 space-x-1 sm:space-x-2  gap-1">
