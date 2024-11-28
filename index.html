@@ -66,7 +66,7 @@
     }
 
     #addMoreBtn {
-      transition: transform 0.2s, background-color 0.2s;
+
       height: 4rem;
       width: 3rem;
       flex-shrink: 0;
@@ -74,7 +74,7 @@
     }
 
     #addMoreBtn:hover {
-      transform: scale(1.1);
+
       background-color: #2563eb;
     }
 
@@ -90,15 +90,15 @@
 
     .border-dashed {
       height: 17rem;
-      background-color: #f9f9f9;
+      background-color: #F9FCFF;
       width: 100%;
       /* Match the result area width */
       margin: 0 auto;
     }
 
     .border-dashed:hover {
-      border-color: #2563eb;
-      background-color: #f0f0f0;
+      border-color: gray;
+      background-color: #F9FCFF;
     }
 
     .instruction-text {
@@ -120,12 +120,12 @@
     }
 
     .additional-options input[type="text"] {
-      width: 100px;
-      margin-right: 0.5rem;
+      width: 80px;
+      margin-right: 0.4rem;
     }
 
     .additional-options select {
-      margin-left: 0.5rem;
+      margin-left: 0.3rem;
     }
 
     .toggle-icon {
@@ -212,8 +212,8 @@
 
 
       .border-dashed {
-        height: auto;
-        background-color: #f9f9f9;
+
+        background-color: #F9FCFF;
         width: 100%;
         /* Match the result area width */
         margin: 0 auto;
@@ -223,27 +223,54 @@
 </head>
 
 <body>
-  <header class="flex justify-between ">
-    <a href="index.html">
-      <img src="image/JPEG Compressor.svg" alt="JPEG Compressor Logo" class="h-6 md:h-8">
-    </a>
-    <nav>
-      <a href="index.html" class="ml-4 text-white">Home</a>
-      <a href="about.html" class="ml-4 text-white">About</a>
-      <a href="terms.html" class="ml-4 text-white">Terms</a>
-      <a href="privacy.html" class="ml-4 text-white">Privacy</a>
-    </nav>
+  <header class="bg-gradient-to-r from-blue-500 to-blue-900 text-white sticky top-0 w-full z-50 shadow-lg mb-[20rem]">
+    <div class="container mx-auto flex justify-between items-center p-2 md:p-4">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-2">
+        <img src="image/JPEG Compressor.svg" alt="Logo" class="h-5 md:h-8">
+
+      </a>
+
+      <!-- Hamburger Menu (visible on mobile) -->
+      <button id="menuToggle" class="block md:hidden focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav id="navMenu"
+        class="fixed top-0 left-0 bg-blue-500 md:bg-transparent text-white w-full h-3/6 md:h-auto transform -translate-y-full transition-all duration-500 md:static md:h-auto md:w-auto md:translate-y-0 md:flex md:items-center md:space-x-6 ">
+        <!-- Close Button (visible on mobile) -->
+        <button id="menuClose" class="absolute top-4 right-4 md:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <!-- Links -->
+        <a href="index.html" class="block px-4 py-2 text-lg   rounded md:inline hover:text-gray-600 ">Home</a>
+        <a href="about.html" class="block px-4 py-2 text-lg   rounded md:inline hover:text-gray-600">About</a>
+        <a href="terms.html" class="block px-4 py-2 text-lg   rounded md:inline hover:text-gray-600">Terms</a>
+        <a href="privacy.html" class="block px-4 py-2 text-lg   rounded md:inline hover:text-gray-600">Privacy</a>
+      </nav>
+    </div>
   </header>
-  <main class="p-8 max-w-3xl mx-auto">
-    <h1 class="text-center text-3xl font-bold mb-4">JPEG Compressor</h1>
+
+
+
+  <main class="p-6 md:p-8 max-w-3xl mx-auto ">
+    <h1 class="text-center text-2xl md:text-3xl font-bold mb-2 md:mb-4">JPEG Compressor</h1>
     <p class="text-center mb-8">JPEG compressor is a free online image optimization tool that can compress JPEG, PNG,
       JPG, SVG, and WEBP images.</p>
-    <div class="border-2 border-dashed border-gray-400 p-8 text-center rounded-lg">
-      <p class="instruction-text">Drag & drop files here or</p>
-      <p class="instruction-text">Paste the image from the clipboard (Ctrl-V or ⌘V)</p>
-      <p class="mt-2 text-sm text-center">Compress jpeg, png, gif, jpg, svg, webp, heic, tiff and ico. Max 50 MB.</p>
+    <div class="border-2 border-dashed border-gray-600  p-6 md:p-8 text-center rounded-lg ">
+      <p class="instruction-text hidden md:block">Drag & drop files here or</p>
+      <p class="instruction-text  hidden md:block">Paste the image from the clipboard (Ctrl-V or ⌘V)</p>
+      <p class="mt-2 text-sm text-center  hidden md:block">Compress jpeg, png, gif, jpg, svg, webp, heic, tiff and ico.
+        Max 50 MB.</p>
+      <p class="mt-2 text-base text-center    md:hidden">Choose Your File...</p>
       <button id="selectFilesBtn"
-        class="bg-blue-500 text-white px-3 sm:px-4 py-1 sm:py-2 rounded flex items-center justify-center mx-auto">
+        class="bg-gradient-to-r from-blue-500 to-blue-900 text-white px-3 sm:px-4 py-1 sm:py-2 rounded flex items-center justify-center mx-auto">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
           stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -251,7 +278,10 @@
         </svg>
         Select Files
       </button>
-      <div class="flex mt-1 md:mt-4 space-x-1 sm:space-x-2 justify-center gap-1">
+      <p class="mt-2 text-xs text-center   md:hidden">Compress jpeg, png, gif, jpg, svg, webp, heic, tiff and
+        ico.
+        Max 50 MB.</p>
+      <div class="flex mt-1 md:mt-4 space-x-1 sm:space-x-2  gap-1">
         <div id="thumbnails" class="flex space-x-1 sm:space-x-2"></div>
         <button id="addMoreBtn"
           class="hidden bg-blue-500 text-white rounded flex items-center justify-center">+</button>
@@ -264,15 +294,15 @@
       <div class="flex flex-wrap  justify-between items-center mb-4">
         <label for="quality" class="font-medium ">Compression Quality</label>
         <select id="quality" class="border rounded p-1 sm:p-2  text-xs sm:text-sm">
-          <option>High Quality(Larger Size)</option>
-          <option>Medium Quality(Balanced)</option>
-          <option>Low Quality(Smaller Size)</option>
+          <option>High Quality (Large)</option>
+          <option>Medium Quality (Balanced)</option>
+          <option>Low Quality (Smaller)</option>
           <option>Additional Option</option>
         </select>
       </div>
       <div class="flex flex-wrap justify-between items-center mb-4">
         <label for="format" class="font-medium">Convert to</label>
-        <select id="format" class="border rounded p-2">
+        <select id="format" class="border rounded p-2 text-xs sm:text-sm">
           <option>Original Format</option>
           <option>JPEG</option>
           <option>PNG</option>
@@ -299,10 +329,10 @@
         <div class="flex flex-wrap items-center mb-4 gap-1 sm:gap-2">
           <input type="checkbox" id="resize" class="mr-2" checked>
           <label for="resize" class="font-medium">Resize</label>
-          <div class="flex flex-wrap gap-1">
+          <div class="flex   gap-1">
 
-            <input type="text" placeholder="Width" class="dimension-input border rounded p-1   sm:p-2 sm:mx-2">
-            <input type="text" placeholder="Height" class="dimension-input border rounded p-1 sm:p-2">
+            <input type="text" placeholder="Width" class="dimension-input border rounded p-1    sm:p-2 sm:mx-2">
+            <input type="text" placeholder="Height" class="dimension-input border rounded p-1   sm:p-2">
           </div>
         </div>
         <div class="flex flex-wrap items-center mb-4">
@@ -330,7 +360,7 @@
   <div style="background-color: #295194;" class="text-white p-8 shadow-lg">
     <div class="container mx-auto flex flex-col md:flex-row items-center">
       <div class="w-full md:w-1/2 pr-4">
-        <h1 class="text-3xl font-bold mb-4 text-center">Optimize Bulk Images</h1>
+        <h1 class="text-xl md:text-3xl font-bold mb-4 text-center">Optimize Bulk Images</h1>
         <p class="mb-4">
           Compress your images with our free online jpeg compressor that optimizes large images
           to a smaller size without losing their original quality. We use sophisticated image
@@ -356,7 +386,7 @@
   <section class="bg-gray-100 py-5 text-gray-600">
     <div class="container mx-auto px-4">
       <div class="mb-3 text-center">
-        <h2 class="text-2xl font-bold mb-4 text-gray-800">Why Use Our JPG Compressor?</h2>
+        <h2 class="text-lg md:text-2xl font-bold mb-4 text-gray-800">Why Use Our JPG Compressor?</h2>
         <p class="text-justify">Our JPG Compressor uses cutting-edge algorithms to reduce the size of images while
           maintaining quality. Using our compressor, the images will load faster and require less storage. It supports
           formats like JPEG, JPG, PNG, SVG, WEBP, GIF, and HEIC.</p>

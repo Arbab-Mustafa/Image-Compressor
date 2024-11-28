@@ -616,3 +616,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+//------------------------------------
+const menuToggle = document.getElementById("menuToggle"); // Hamburger menu button
+const menuClose = document.getElementById("menuClose"); // Close button
+const navMenu = document.getElementById("navMenu"); // Navigation menu
+
+// Show menu
+menuToggle.addEventListener("click", () => {
+  navMenu.classList.remove("-translate-y-full");
+  navMenu.classList.add("translate-y-0");
+});
+
+// Hide menu
+menuClose.addEventListener("click", () => {
+  navMenu.classList.remove("translate-y-0");
+  navMenu.classList.add("-translate-y-full");
+});
+
+// Close menu when clicking outside (optional for mobile)
+document.addEventListener("click", (e) => {
+  if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+    navMenu.classList.remove("translate-y-0");
+    navMenu.classList.add("-translate-y-full");
+  }
+});
