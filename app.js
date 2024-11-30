@@ -221,6 +221,24 @@ document.addEventListener("DOMContentLoaded", () => {
     resetCompressionState();
   });
 
+  //
+  dropArea.addEventListener("paste", (event) => {
+    // Access clipboard data from the paste event
+    const clipboardItems = event.clipboardData.items;
+
+    // Iterate over clipboard items to find image files
+    for (let i = 0; i < clipboardItems.length; i++) {
+      const item = clipboardItems[i];
+
+      // Check if the item is an image
+      if (item.type.startsWith("image/")) {
+        const file = item.getAsFile(); // Get the file object from clipboard item
+        handleFiles([file]); // Pass the image file to the handleFiles function
+        break; // Stop after the first image
+      }
+    }
+  });
+
   function handleFiles(files) {
     let totalSize = allFiles.reduce((acc, file) => acc + file.size, 0);
     for (let i = 0; i < files.length; i++) {
@@ -302,16 +320,20 @@ document.addEventListener("DOMContentLoaded", () => {
       let compressButton = document.querySelector(".bg-green-500");
 
       // Change button's inner HTML to show loading spinner
-      // compressButton.innerHTML = `
-      // <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-      //   <svg class="animate-spin" style="width: 20px; height: 20px; color: white;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-      //     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
-      //     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3V4a8 8 0 11-8 8z"></path>
-      //   </svg>
-      //   <div style="color: white; font-size: 12px; margin-left: 8px; text-align: center;">
-      //     Compressing
-      //   </div>
-      // </div>`;
+      let originalButtonHTML = compressButton.innerHTML;
+      compressButton.innerHTML = `
+      <div style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+        <svg class="animate-spin" style="width: 20px; height: 20px; color: white;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3V4a8 8 0 11-8 8z"></path>
+        </svg>
+        <div style="color: white; font-size: 12px; margin-left: 8px; text-align: center;">
+          Compressing
+        </div>
+      </div>`;
+      setTimeout(function () {
+        compressButton.innerHTML = originalButtonHTML;
+      }, 4000);
 
       resultsContainer.innerHTML = `<div class="flex flex-wrap justify-center mb-4">
       </div>
