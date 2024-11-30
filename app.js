@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const removeBtn = document.createElement("button");
         removeBtn.innerHTML = "&times;";
         removeBtn.className =
-          "absolute top-0 right-0 bg-black text-white rounded-full w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100";
+          "absolute top-0 right-0 bg-gray-200 text-black mx-auto rounded-full w-5 h-5 flex items-center justify-center   opacity-100";
         removeBtn.onclick = () => {
           thumbnail.remove();
           URL.revokeObjectURL(objectURL);
@@ -320,15 +320,19 @@ document.addEventListener("DOMContentLoaded", () => {
        <!-- Include Heroicons SVG -->
  
 
-     <div class='flex gap-1 row-reverse'>
-     <button id="clear-list" class="flex items-center bg-gray-200    text-black font-semibold py-1 sm:py-2 px-2 sm:px-4 rounded text-sm sm:text-lg">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 sm:w-6 sm:h-6">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+     <div class='flex gap-1 row-reverse justify-between w-full sm:w-auto'>
+     <button id="clear-list" 
+  class="flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-lg shadow-md p-2 sm:p-3 transition duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 text-xm sm:text-lg">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500 mr-2" viewBox="0 0 24 24" fill="currentColor">
+    <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L12.586 12l-2.293-2.293a1 1 0 111.414-1.414L14 10.586l2.293-2.293a1 1 0 011.414 1.414L15.414 12l2.293 2.293a1 1 0 01-1.414 1.414L14 13.414l-2.293 2.293a1 1 0 01-1.414 0z" clip-rule="evenodd" />
   </svg>
+  
 </button>
 
 
-     <button id="download-all" class="bg-blue-500 hover:bg-blue-700 text-white font-bold  py-1 sm:py-2 px-2 sm:px-4 rounded text-sm sm:text-lg">Download All</button>
+
+
+     <button id="download-all" class="bg-blue-500 hover:bg-blue-700 text-white font-bold text-sm  py-1 sm:py-2 px-2 sm:px-4 rounded text-xm sm:text-lg">Download All</button>
      </div>
       </div>
       `;
@@ -344,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
           (img.dataset.filesize / (1024 * 1024)).toFixed(2) + " MB";
         const truncatedName =
           img.dataset.filename.length > 20
-            ? img.dataset.filename.substring(0, 20) + "..."
+            ? img.dataset.filename.substring(0, 25) + "..."
             : img.dataset.filename;
         fileSection.innerHTML = `
             <div class='flex flex-col gap-1 sm:flex-row   justify-between p-1 sm:p-2'>
@@ -360,7 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 
   <!-- 2 -->
-  <div class='flex items-center '>
+  <div class='flex items-center justify-between '>
     <div class="mr-2 progress-bar" style="width: 100px;">
       <div class="progress-bar-inner" id="progress-bar-${index}" style="
 width: 0;
@@ -373,14 +377,16 @@ align-items: center;
 justify-content: center;
 color: white;
 font-weight: bold;
-font-size: 12px;
+font-size: 10px;
 ">0%
 </div>
     </div>
+    <div class='flex '>
     <button
-      class="compare-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-1 text-xs">Compare</button>
+    class="compare-btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mr-1 text-xs">Compare</button>
     <button
-      class="download-btn bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-xs">Download</button>
+    class="download-btn bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-xs">Download</button>
+    </div>
   </div>
 </div>
             `;
@@ -556,14 +562,14 @@ font-size: 12px;
 
     function updateProgress() {
       if (progress < 99) {
-        progress += Math.floor(Math.random() * 2) + 2;
+        progress += Math.floor(Math.random() * 5) + 5;
         if (progress > 99) {
           progress = 99;
         }
         progressBar.style.width = progress + "%";
         progressBar.textContent = progress + "%";
         downloadButton.disabled = true;
-        setTimeout(updateProgress, 1000);
+        setTimeout(updateProgress, 300);
       }
     }
     updateProgress();
@@ -580,8 +586,8 @@ font-size: 12px;
         progressBar.classList.remove("progress-bar-inner");
         progressBar.classList.add("progress-bar-completed");
         downloadButton.disabled = false;
-      }, 9000);
-    }, 8000);
+      }, 5000);
+    }, 5000);
   }
 
   function resetCompressionState() {
